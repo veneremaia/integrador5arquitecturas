@@ -1,0 +1,32 @@
+<div class="m-5">
+<div class="row">
+
+    <h1 class="col-6">Listado de clientes</h1>
+    <button class="col-2 mb-2" mat-raised-button color="primary" (click)="openDialog()">+ Crear cliente</button>
+
+</div>
+
+   <div class="row">
+   <table mat-table [dataSource]="dataSource" class="col-8 mat-elevation-z8">
+   
+       <ng-container matColumnDef="id">
+         <th mat-header-cell *matHeaderCellDef> Id </th>
+         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+       </ng-container>
+     
+   
+       <ng-container matColumnDef="nombre">
+         <th mat-header-cell *matHeaderCellDef> Nombre </th>
+         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+       </ng-container>
+
+       <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef> Total gastado </th>
+        <td mat-cell *matCellDef="let element"> $ {{element.total}} </td>
+      </ng-container>
+     
+       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+     </table>
+   </div>
+</div>

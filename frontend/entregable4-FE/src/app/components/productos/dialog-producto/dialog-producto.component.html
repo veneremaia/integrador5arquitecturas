@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Crear Producto</h1>
+<div mat-dialog-content>
+  <p>Complete descripcion de nuevo producto</p>
+  <form [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Descripción</mat-label>
+
+    <input  formControlName="descripcion">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Precio</mat-label>
+
+    <input  formControlName="precio" type="number">
+  </mat-form-field>
+
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close] (click)="addProducto()" cdkFocusInitial>Confirmar</button>
+  </div>
+</form>
+</div>

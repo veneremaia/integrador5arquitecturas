@@ -1,0 +1,43 @@
+<div class="mt-5">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Elija un cliente</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let cliente of clientes" [value]="cliente.id" (click)="selectCliente(cliente)">{{cliente.nombre}}</mat-option>
+    
+        </mat-select>
+      </mat-form-field>
+<h1>Carrito</h1>
+
+<div class="card">
+    <ul class="list-group">
+        <div class="accordion" id="accordionExample">
+            <div *ngFor = "let producto of cartList$">
+                <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-warning"  [id]="'heading'+producto.descripcion" data-toggle="collapse" [attr.data-target]="'#collapse'+producto.descripcion" aria-expanded="true" [attr.aria-controls]="'collapse'+producto.descripcion">
+                    {{producto.descripcion}}
+                    <span class="badge rounded-pill bg-success">{{producto.cantidad}}</span>
+                    <button class="btn">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg>
+                    </button>
+                </li>
+                <div [id]="'collapse'+producto.descripcion" class="collapse" [attr.aria-labelledby]="'heading'+producto.descripcion" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{producto.precio}}</li>
+                        </ul>         
+                    </div>
+                </div>      
+            </div>  
+        </div>
+        <!-- Esto debe aparecer siempre y cuando la lista del cart sea mayor a cero-->
+        <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-light">
+            <!-- cantidad de calorias en total con todos los ingredientes del cart-->
+            TOTAL : $ {{total}}
+            <button type="button" class="btn btn-success btn-lg" (click)="crearFactura()">Finalizar compra</button>
+
+        </li>
+    </ul>
+</div></div>

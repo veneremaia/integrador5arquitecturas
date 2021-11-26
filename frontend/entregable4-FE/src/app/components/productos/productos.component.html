@@ -1,0 +1,64 @@
+<div class="container mt-5 m-5">
+  
+    <div class="row">
+ <h1 class="col-7">Listado de produtos</h1>
+ <button class="col-2 mb-2" mat-raised-button color="primary" (click)="openDialog()">+ Crear producto</button>
+
+</div>
+<div class="row">
+<table mat-table [dataSource]="dataSource" class="col-8 mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+      <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+    </ng-container>
+  
+
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef> Precio </th>
+      <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cantidad" class="d-flex align-items-center">
+      <th mat-header-cell  *matHeaderCellDef > Cantidad </th>
+      <td mat-cell *matCellDef="let element" >
+        <div class="input-group mb-3">
+          <div class="input-group-prepend d-flex flex-row align-items-center">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="downQuantity(element)">-</button>
+          
+          <input type="text" class="form-control" [value]="element.cantidad">
+      
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="upQuantity(element)">+</button>
+        </div>
+      </div>
+      
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">  
+        <button type="button" [ngClass]="{'btn-success': element.cantidad>0, 'btn-outline-success': element.cantidad==0}" class="btn" (click)="addToCart(element)">Comprar</button>
+
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">  
+        <button type="button" class="btn btn-danger" (click)="eliminarProduto(element)">Eliminar</button>
+
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+</div>
